@@ -66,5 +66,5 @@ npm start
 Contributions are always welcome. Just send a pull request. Feel free to contact me [GitHub](https://github.com/georgeneil).
 
 ## License
-```
+
 MIT License

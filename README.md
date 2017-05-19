@@ -50,3 +50,21 @@ The above example demonstrates the following:
 - How to pass custom style
 - How to pass custom icon's
 - Can use any svg-image as icons for checked, un-checked icons
+
+## To install dependencies
+
+```
+npm install
+```
+
+## To build the pages
+
+```
+npm start
+```
+## Contributing
+Contributions are always welcome. Just send a pull request. Feel free to contact me [GitHub](https://github.com/georgeneil).
+
+## License
+```
+MIT License

@@ -10,7 +10,8 @@ interface Props extends React.Props<App> {
 }
 const styles = {
   block: {
-    maxWidth: 250
+    maxWidth: 250,
+    padding: 20
   },
   checkbox: {
     marginBottom: 16
@@ -28,13 +29,14 @@ export default class App extends React.Component<Props, {}> {
           <Checkbox
             checkedIcon={< ActionFavorite />}
             uncheckedIcon={< ActionFavoriteBorder />}
-            label="Favourite"
+            label="Favourite Icon"
             style={styles.checkbox}/>
           <Checkbox
             checkedIcon={< ActionPair1Cross />}
             uncheckedIcon={< ActionPair1Tick />}
-            label="Custom icon"
+            label="Custom Icon"
             style={styles.checkbox}/>
+          <Checkbox label="Default Value" style={styles.checkbox} checked={true}/>
         </div>
       </div>
     );

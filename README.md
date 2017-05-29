@@ -1,12 +1,16 @@
 # React Checkbox using Typescript
 
 This is a react based checkbox component developed using Typescript.  
-Inspired from [Material-UI](http://callemall.github.io/material-ui/).
+Inspired from [Material-UI](https://github.com/callemall/material-ui).
 
 ## Features
-  - Custom Label
-  - Custom Style
-  - Custom Icon
+  - [x] Pass the Label Value
+  - [x] Pass Custom Style's
+  - [x] Customize Icon's in the form of SVG's
+  - [ ] Pass Default value
+  - [ ] Ripple Animation Effects
+  - [ ] Label position - Left/Right
+  - [ ] Pass disabled mode Styles
 
 ```typescript
 interface Props extends React.Props<Checkbox> {

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Transitions from '../styles/Transitions';
 import CheckBoxUnChecked from '../svg-icons/CheckBoxUnChecked';
 import CheckBoxChecked from '../svg-icons/CheckBoxChecked';
+import TouchRipple from '../common/TouchRipple';
 
 function getStyles(props) {
     return {
@@ -69,6 +70,13 @@ function getStyles(props) {
             opacity: 1,
             transform: 'scale(1)',
             transition: `${Transitions.easeOut('0ms', 'opacity', '0ms')}, ${Transitions.easeOut('800ms', 'transform', '0ms')}`
+        },
+        ripple: {
+            color: 'rgba(0, 0, 0, 0.07)',
+            height: '200%',
+            width: '200%',
+            top: -12,
+            left: -12,
         }
     }
 };
@@ -76,15 +84,27 @@ function getStyles(props) {
 interface Props extends React.Props<Checkbox> {
     label : string;
     style: any;
+    checked?: boolean;
     checkedIcon?: any;
     uncheckedIcon?: any;
 };
 
 export default class Checkbox extends React.Component<Props, {}>{
      private textInput: HTMLInputElement;
+     private touchRipple: TouchRipple;
 
     state = {
         switched: false
+    };
+
+    componentWillMount() {
+        const {checked} = this.props;
+
+        if (checked) {
+            this.setState({
+                switched: true,
+            });
+        }
     };
 
     handleChange = (event) => {
@@ -92,26 +112,48 @@ export default class Checkbox extends React.Component<Props, {}>{
         this.setState({switched: isInputChecked});
     };
 
+    handleMouseDown = (event) => {
+        // only listen to left clicks
+        if (event.button === 0) {
+            this.touchRipple.start(event);
+        }
+    };
+
+    handleMouseUp = () => {
+        this.touchRipple.end();
+    };
+
     public render() {
         const styles = getStyles(this.props);
-        const {label, style, checkedIcon, uncheckedIcon} = this.props;
+        const {label, style, checked, checkedIcon, uncheckedIcon} = this.props;
+        const rootStyle = {...styles.root, ...style};
+        const switchedBoxStyles = this.state.switched && styles.boxWhenSwitched;
+        const unCheckStyles = { ...styles.box, ...switchedBoxStyles };
+        const switchedCheckStyles = this.state.switched && styles.checkWhenSwitched;
+        const checkStyles = { ...styles.check, ...switchedCheckStyles };
+        const mergedRippleStyle = { ...styles.ripple };
 
         const inputElm = (<input
             ref={(ref) => this.textInput = ref}
             type="checkbox"
             style={styles.input}
-            onChange={this.handleChange}/>);
+            onChange={this.handleChange}
+            onMouseDown={this.handleMouseDown}
+            onMouseUp={this.handleMouseUp}
+            />);
+
+        const touchRipple = (<TouchRipple 
+            ref={(ref) => this.touchRipple = ref}
+            style={mergedRippleStyle}
+            color={mergedRippleStyle.color}
+        />);
 
         const labelElm = (
             <label style={styles.label}>
                 {label}
             </label>
         );
-        const rootStyle = {...styles.root, ...style};
-        const switchedBoxStyles = this.state.switched && styles.boxWhenSwitched;
-        const unCheckStyles = { ...styles.box, ...switchedBoxStyles };
-        const switchedCheckStyles = this.state.switched && styles.checkWhenSwitched;
-        const checkStyles = { ...styles.check, ...switchedCheckStyles };
+
         const unCheckedElement = uncheckedIcon
                                     ? React.cloneElement(uncheckedIcon, {style: {...unCheckStyles, ...uncheckedIcon.props.style}})
                                     : React.createElement(CheckBoxUnChecked, {style: unCheckStyles});
@@ -119,18 +161,19 @@ export default class Checkbox extends React.Component<Props, {}>{
                                     ? React.cloneElement(checkedIcon, {style: { ...checkStyles, ...checkedIcon.props.style}})
                                     : React.createElement(CheckBoxChecked, {style: checkStyles});
         const checkboxElement = (
-            <div style={styles.wrap}>
                 <div>
                     {unCheckedElement}
                     {checkedElement}
                 </div>
-            </div>
         );
         return (
             <div style={rootStyle}>
                 {inputElm}
                 <div style={styles.controls}>
-                    {checkboxElement}
+                    <div style={styles.wrap}>
+                        {checkboxElement}
+                        {touchRipple}
+                    </div>
                     {labelElm}
                 </div>
             </div>

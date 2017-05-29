@@ -68,7 +68,7 @@ npm start
 ```
 ## To build the pages
 ```
-npm run start
+npm run build
 ```
 ## Contributing
 Contributions are always welcome. Just send a pull request. Feel free to contact me [GitHub](https://github.com/georgeneil).

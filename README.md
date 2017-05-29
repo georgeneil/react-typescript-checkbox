@@ -3,6 +3,9 @@
 This is a react based checkbox component developed using Typescript.  
 Inspired from [Material-UI](https://github.com/callemall/material-ui).
 
+## Snapshot
+![Image of Yaktocat](https://github.com/georgeneil/react-typescript-checkbox/blob/master/snapshot/snapshot.PNG)
+
 ## Features
   - [x] Pass the Label Value
   - [x] Pass Custom Style's

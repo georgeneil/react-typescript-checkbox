@@ -59,15 +59,16 @@ The above example demonstrates the following:
 - Can use any svg-image as icons for checked, un-checked icons
 
 ## To install dependencies
-
 ```
 npm install
 ```
-
-## To build the pages
-
+## To run in development mode
 ```
 npm start
+```
+## To build the pages
+```
+npm run start
 ```
 ## Contributing
 Contributions are always welcome. Just send a pull request. Feel free to contact me [GitHub](https://github.com/georgeneil).

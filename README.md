@@ -10,7 +10,7 @@ Inspired from [Material-UI](https://github.com/callemall/material-ui).
   - [x] Pass the Label Value
   - [x] Pass Custom Style's
   - [x] Customize Icon's in the form of SVG's
-  - [ ] Pass Default value
+  - [x] Pass Default Value
   - [ ] Ripple Animation Effects
   - [ ] Label position - Left/Right
   - [ ] Pass disabled mode Styles

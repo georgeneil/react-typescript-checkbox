@@ -72,7 +72,7 @@ function getStyles(props) {
             transition: `${Transitions.easeOut('0ms', 'opacity', '0ms')}, ${Transitions.easeOut('800ms', 'transform', '0ms')}`
         },
         ripple: {
-            color: 'rgba(0, 0, 0, 0.07)',
+            color: 'rgba(0, 0, 0, 0.1)',
             height: '200%',
             width: '200%',
             top: -12,
@@ -84,7 +84,7 @@ function getStyles(props) {
 interface Props extends React.Props<Checkbox> {
     label : string;
     style: any;
-    checked?: boolean;
+    defaultChecked?: boolean;
     checkedIcon?: any;
     uncheckedIcon?: any;
 };
@@ -97,13 +97,14 @@ export default class Checkbox extends React.Component<Props, {}>{
         switched: false
     };
 
-    componentWillMount() {
-        const {checked} = this.props;
+    componentDidMount() {
+        const {defaultChecked} = this.props;
 
-        if (checked) {
+        if (defaultChecked) {
             this.setState({
                 switched: true,
             });
+            this.textInput.checked = true;
         }
     };
 
@@ -125,7 +126,7 @@ export default class Checkbox extends React.Component<Props, {}>{
 
     public render() {
         const styles = getStyles(this.props);
-        const {label, style, checked, checkedIcon, uncheckedIcon} = this.props;
+        const {label, style, checkedIcon, uncheckedIcon} = this.props;
         const rootStyle = {...styles.root, ...style};
         const switchedBoxStyles = this.state.switched && styles.boxWhenSwitched;
         const unCheckStyles = { ...styles.box, ...switchedBoxStyles };

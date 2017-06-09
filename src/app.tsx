@@ -36,7 +36,7 @@ export default class App extends React.Component<Props, {}> {
             uncheckedIcon={< ActionPair1Tick />}
             label="Custom Icon"
             style={styles.checkbox}/>
-          <Checkbox label="Default Value" style={styles.checkbox} checked={true}/>
+          <Checkbox label="Default Checked" style={styles.checkbox} defaultChecked={true}/>
         </div>
       </div>
     );

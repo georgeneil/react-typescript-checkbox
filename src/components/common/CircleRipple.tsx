@@ -10,6 +10,7 @@ interface Props extends React.Props<CircleRipple> {
 
 export default class CircleRipple extends React.Component<Props, {}>{
     private leaveTimer : number;
+    private enterTimer : number;
 
     componentWillAppear(callback) {
         this.initializeAnimation(callback);
@@ -17,6 +18,18 @@ export default class CircleRipple extends React.Component<Props, {}>{
 
     componentDidAppear() {
         this.animate();
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.enterTimer);
+        clearTimeout(this.leaveTimer);
+    }
+
+    componentWillLeave(callback) {
+        const style = ReactDOM.findDOMNode<HTMLInputElement>(this).style;
+        style.opacity = '0';
+        const removeAfter = 2000;
+        this.enterTimer = setTimeout(callback, removeAfter);
     }
 
     initializeAnimation(callback) {
@@ -29,6 +42,8 @@ export default class CircleRipple extends React.Component<Props, {}>{
     animate() {
         const style = ReactDOM.findDOMNode<HTMLInputElement>(this).style;
         const transitionValue = `${Transitions.easeOut('2s', 'opacity')}, ${Transitions.easeOut('1s', 'transform')}`;
+        // const transitionValue = `${Transitions.easeOut('2s', 'opacity')}`;
+        // const transitionValue = `${Transitions.easeOut('3s', 'transform')}`;
         autoPrefix.set(style, 'transition', transitionValue);
         autoPrefix.set(style, 'transform', 'scale(1)');
     }

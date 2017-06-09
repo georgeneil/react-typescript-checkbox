@@ -10,7 +10,7 @@ Inspired from [Material-UI](https://github.com/callemall/material-ui).
   - [x] Pass the Label Value
   - [x] Pass Custom Style's
   - [x] Customize Icon's in the form of SVG's
-  - [ ] Pass Default value
+  - [x] Pass Default Value
   - [ ] Ripple Animation Effects
   - [ ] Label position - Left/Right
   - [ ] Pass disabled mode Styles
@@ -59,15 +59,16 @@ The above example demonstrates the following:
 - Can use any svg-image as icons for checked, un-checked icons
 
 ## To install dependencies
-
 ```
 npm install
 ```
-
-## To build the pages
-
+## To run in development mode
 ```
 npm start
+```
+## To build the pages
+```
+npm run build
 ```
 ## Contributing
 Contributions are always welcome. Just send a pull request. Feel free to contact me [GitHub](https://github.com/georgeneil).

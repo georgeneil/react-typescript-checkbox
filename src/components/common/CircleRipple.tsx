@@ -14,39 +14,45 @@ export default class CircleRipple extends React.Component<Props, {}>{
 
     componentWillAppear(callback) {
         this.initializeAnimation(callback);
-    }
+    };
 
     componentDidAppear() {
         this.animate();
-    }
+    };
+
+    componentWillEnter(callback) {
+        this.initializeAnimation(callback);
+    };
+
+    componentDidEnter() {
+        this.animate();
+    };
 
     componentWillUnmount() {
         clearTimeout(this.enterTimer);
         clearTimeout(this.leaveTimer);
-    }
+    };
 
     componentWillLeave(callback) {
         const style = ReactDOM.findDOMNode<HTMLInputElement>(this).style;
         style.opacity = '0';
         const removeAfter = 2000;
         this.enterTimer = setTimeout(callback, removeAfter);
-    }
+    };
 
     initializeAnimation(callback) {
         const style = ReactDOM.findDOMNode<HTMLInputElement>(this).style;
         // style.opacity = this.props.opacity;
         autoPrefix.set(style, 'transform', 'scale(0)');
         this.leaveTimer = setTimeout(callback, 0);
-    }
+    };
 
     animate() {
         const style = ReactDOM.findDOMNode<HTMLInputElement>(this).style;
         const transitionValue = `${Transitions.easeOut('2s', 'opacity')}, ${Transitions.easeOut('1s', 'transform')}`;
-        // const transitionValue = `${Transitions.easeOut('2s', 'opacity')}`;
-        // const transitionValue = `${Transitions.easeOut('3s', 'transform')}`;
         autoPrefix.set(style, 'transition', transitionValue);
         autoPrefix.set(style, 'transform', 'scale(1)');
-    }
+    };
 
     public render() {
         const {color, style, ...other} = this.props;
@@ -65,5 +71,5 @@ export default class CircleRipple extends React.Component<Props, {}>{
         return (
             <div name='t' style={mergedStyles} />
         );
-    }
+    };
 };

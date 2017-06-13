@@ -33,6 +33,7 @@ export default class TouchRipple extends React.Component<Props, {}>{
 
         this.setState({
             hasRipples: true,
+            nextKey: this.state.nextKey + 1,
             ripples: ripples
         });
     }

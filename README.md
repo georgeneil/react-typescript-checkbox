@@ -19,6 +19,7 @@ Inspired from [Material-UI](https://github.com/callemall/material-ui).
 interface Props extends React.Props<Checkbox> {
     label : string;
     style: any;
+    defaultChecked?: boolean;
     checkedIcon?: any;
     uncheckedIcon?: any;
 };

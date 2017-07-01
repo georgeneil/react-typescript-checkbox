@@ -11,7 +11,7 @@ Inspired from [Material-UI](https://github.com/callemall/material-ui).
   - [x] Pass Custom Style's
   - [x] Customize Icon's in the form of SVG's
   - [x] Pass Default Value
-  - [ ] Ripple Animation Effects
+  - [x] Ripple Animation Effects
   - [ ] Label position - Left/Right
   - [ ] Pass disabled mode Styles
 

@@ -1,7 +1,6 @@
 # React Checkbox using Typescript
 
 This is a react based checkbox component developed using Typescript.  
-Inspired from [Material-UI](https://github.com/callemall/material-ui).
 
 ## Snapshot
 ![Snapshot of Checkboxes](https://github.com/georgeneil/react-typescript-checkbox/blob/master/snapshot/snapshot.PNG)
